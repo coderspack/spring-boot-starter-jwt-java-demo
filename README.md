@@ -1,4 +1,4 @@
-# HINT [![Build Status](https://travis-ci.org/larmic/jwt-spring-security-demo.svg?branch=master)](https://travis-ci.org/larmic/jwt-spring-security-demo) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+# HINT [![Build Status](https://travis-ci.org/coderspack/spring-boot-starter-jwt-java-demo.svg?branch=master)](https://travis-ci.org/coderspack/spring-boot-starter-jwt-java-demo) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 This fork is in progress and tries to convert @szerhusenBC jwt demo to a spring boot starter. 
 
