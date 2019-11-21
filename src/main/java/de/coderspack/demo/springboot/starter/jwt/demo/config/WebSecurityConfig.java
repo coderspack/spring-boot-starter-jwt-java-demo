@@ -26,7 +26,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
    private final JwtAccessDeniedHandler jwtAccessDeniedHandler;
 
    public WebSecurityConfig(
-      JWTConfigurer jwtConfigurer, // TODO [spring-boot-starter] add to documentation
+      JWTConfigurer jwtConfigurer,
       CorsFilter corsFilter,
       JwtAuthenticationEntryPoint authenticationErrorHandler,
       JwtAccessDeniedHandler jwtAccessDeniedHandler
@@ -39,7 +39,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
    // Configure BCrypt password encoder =====================================================================
 
-   // TODO [spring-boot-starter] add to documentation
    @Bean
    public PasswordEncoder passwordEncoder() {
       return new BCryptPasswordEncoder();
@@ -76,7 +75,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
          .exceptionHandling()
 
-         // TODO [spring-boot-starter] add to documentation
          .authenticationEntryPoint(authenticationErrorHandler)
          .accessDeniedHandler(jwtAccessDeniedHandler)
 
@@ -106,7 +104,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
          .and()
 
-         // TODO [spring-boot-starter] add to documentation
          .apply(jwtConfigurer);
    }
 }
