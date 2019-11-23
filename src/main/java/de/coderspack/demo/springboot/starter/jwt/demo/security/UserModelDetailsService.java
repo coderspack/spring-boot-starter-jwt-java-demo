@@ -21,6 +21,7 @@ import java.util.stream.Collectors;
 /**
  * Authenticate a user from the database.
  */
+// TODO add to documentation
 @Component("userDetailsService")
 public class UserModelDetailsService implements UserDetailsService {
 
