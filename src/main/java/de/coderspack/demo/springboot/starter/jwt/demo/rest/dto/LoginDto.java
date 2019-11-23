@@ -16,7 +16,7 @@ public class LoginDto {
    @Size(min = 4, max = 100)
    private String password;
 
-   private Boolean rememberMe;
+   private boolean rememberMe;
 
    public String getUsername() {
       return username;
@@ -34,11 +34,11 @@ public class LoginDto {
       this.password = password;
    }
 
-   public Boolean isRememberMe() {
+   public boolean isRememberMe() {
       return rememberMe;
    }
 
-   public void setRememberMe(Boolean rememberMe) {
+   public void setRememberMe(boolean rememberMe) {
       this.rememberMe = rememberMe;
    }
 

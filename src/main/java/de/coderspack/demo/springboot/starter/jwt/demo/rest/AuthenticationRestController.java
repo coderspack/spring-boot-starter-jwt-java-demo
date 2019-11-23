@@ -2,9 +2,8 @@ package de.coderspack.demo.springboot.starter.jwt.demo.rest;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import de.coderspack.demo.springboot.starter.jwt.demo.rest.dto.LoginDto;
-import de.coderspack.spring.boot.jwt.library.JWTFilter;
-import de.coderspack.spring.boot.jwt.library.factory.TokenFactory;
-import de.coderspack.spring.boot.jwt.library.factory.model.Login;
+import de.coderspack.spring.boot.jwt.autoconfigure.properties.JwtProperties;
+import de.coderspack.spring.boot.jwt.library.security.JwtAuthenticationManager;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,26 +21,23 @@ import javax.validation.Valid;
 @RequestMapping("/api")
 public class AuthenticationRestController {
 
-   private final TokenFactory tokenFactory;
+   private final JwtAuthenticationManager jwtAuthenticationManager;
+   private final JwtProperties jwtProperties;
 
-   public AuthenticationRestController(TokenFactory tokenFactory) {
-      this.tokenFactory = tokenFactory;
+   public AuthenticationRestController(final JwtAuthenticationManager jwtAuthenticationManager,
+                                       final JwtProperties jwtProperties) {
+      this.jwtAuthenticationManager = jwtAuthenticationManager;
+      this.jwtProperties = jwtProperties;
    }
 
    @PostMapping("/authenticate")
    public ResponseEntity<JWTToken> authorize(@Valid @RequestBody LoginDto loginDto) {
-
-      // TODO [spring-boot-starter] add to documentation
-      final String jwt = tokenFactory.createToken(map(loginDto));
+      final String jwt = jwtAuthenticationManager.authenticate(loginDto.getUsername(), loginDto.getPassword(), loginDto.isRememberMe());
 
       final HttpHeaders httpHeaders = new HttpHeaders();
-      httpHeaders.add(JWTFilter.AUTHORIZATION_HEADER, "Bearer " + jwt);
+      httpHeaders.add(jwtProperties.getHeader(), "Bearer " + jwt);
 
       return new ResponseEntity<>(new JWTToken(jwt), httpHeaders, HttpStatus.OK);
-   }
-
-   private Login map(LoginDto dto) {
-      return new Login(dto.getUsername(), dto.getPassword(), dto.isRememberMe() != null ? dto.isRememberMe() : false);
    }
 
    /**
